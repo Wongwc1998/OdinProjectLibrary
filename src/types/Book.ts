@@ -1,8 +1,11 @@
 type BookData = {
+  id: string;
   title: string;
   author: string;
+  completed: boolean;
   pagesRead: number;
-  read: boolean;
-}
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export default BookData;
