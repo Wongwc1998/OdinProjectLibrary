@@ -7,11 +7,13 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [books, setBooks] = useState<BookData[]>([]);
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
-    // Assuming you have a function fetchBooks that gets the list of books from the database
     const fetchInitialBooks = async () => {
       const initialBooks = await getBooks();
       setBooks(initialBooks);
+
+      setLoading(false);
     };
 
     fetchInitialBooks();
@@ -22,8 +24,12 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-start p-24 gap-4">
       <h1>This is Library</h1>
-      <BookDialog  onNewBookAdded={updateBooks}  />
-      <BookList books={books} />
+      <BookDialog onNewBookAdded={updateBooks} />
+      {isLoading ? (
+        <h1>Loading list of books...</h1>
+      ) : (
+        <BookList books={books} />
+      )}
     </main>
   );
 }

@@ -1,6 +1,4 @@
-"use client";
 import BookItem from "./BookItem";
-import { useState } from "react";
 type BookProps = {
   books: {
     id: string;
