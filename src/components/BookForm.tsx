@@ -18,9 +18,11 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import React, { Dispatch, SetStateAction } from "react";
 import BookData from "@/types/Book";
+import { addBook } from "./testAPI";
 
 type BookFormProps = {
   formSubmitHandler: Dispatch<SetStateAction<boolean>>;
+  onNewBookAdded: (newBook: BookData) => void;
 };
 
 const bookFormSchema = z.object({
@@ -36,7 +38,10 @@ const bookFormSchema = z.object({
   completed: z.boolean(),
 });
 
-export default function BookForm({ formSubmitHandler }: BookFormProps) {
+export default function BookForm({
+  formSubmitHandler,
+  onNewBookAdded,
+}: BookFormProps) {
   const form = useForm<BookData>({
     resolver: zodResolver(bookFormSchema),
     defaultValues: {
@@ -48,6 +53,8 @@ export default function BookForm({ formSubmitHandler }: BookFormProps) {
   });
   function onSubmit(data: BookData) {
     formSubmitHandler(false);
+    addBook(data);
+    onNewBookAdded(data);
     console.log(data);
   }
   return (
