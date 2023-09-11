@@ -9,7 +9,7 @@ import {
 
 import BookData from "@/types/Book";
 
-export default function BookCard(props: BookData) {
+export default function BookItem(props: BookData) {
   return (
     <Card>
       <CardHeader>
@@ -20,7 +20,7 @@ export default function BookCard(props: BookData) {
         <h1>Pages Read: {props.pagesRead}</h1>
       </CardContent>
       <CardFooter>
-        <h1>Book finished? {props.read ? "Yes" : "No"}</h1>
+        <h1>Book finished? {props.completed ? "Yes" : "No"}</h1>
       </CardFooter>
     </Card>
   );

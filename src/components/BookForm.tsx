@@ -19,7 +19,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import React, { Dispatch, SetStateAction } from "react";
 import BookData from "@/types/Book";
 
-
 type BookFormProps = {
   formSubmitHandler: Dispatch<SetStateAction<boolean>>;
 };
@@ -34,7 +33,7 @@ const bookFormSchema = z.object({
   pagesRead: z.number().min(1, {
     message: "Pages read must be a non-zero number",
   }),
-  read: z.boolean(),
+  completed: z.boolean(),
 });
 
 export default function BookForm({ formSubmitHandler }: BookFormProps) {
@@ -44,7 +43,7 @@ export default function BookForm({ formSubmitHandler }: BookFormProps) {
       title: "",
       author: "",
       pagesRead: 0,
-      read: false,
+      completed: false,
     },
   });
   function onSubmit(data: BookData) {
@@ -103,7 +102,7 @@ export default function BookForm({ formSubmitHandler }: BookFormProps) {
         />
         <FormField
           control={form.control}
-          name="read"
+          name="completed"
           render={({ field }) => (
             <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md">
               <FormControl>
