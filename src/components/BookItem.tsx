@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Card,
   CardContent,
@@ -18,9 +20,11 @@ export default function BookItem(props: BookData) {
       </CardHeader>
       <CardContent>
         <h1>Pages Read: {props.pagesRead}</h1>
+        <br />
+        <p>Book finished?</p>
       </CardContent>
       <CardFooter>
-        <h1>Book finished? {props.completed ? "Yes" : "No"}</h1>
+        <h1 className="font-bold"> {props.completed ? "Yes" : "No"}</h1>
       </CardFooter>
     </Card>
   );
