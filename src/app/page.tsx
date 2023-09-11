@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1>This is Library</h1>
       <BookDialog />
-      <BookCardsArea />
+      <BookList books={books} />
     </main>
   );
 }
