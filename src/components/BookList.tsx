@@ -14,7 +14,6 @@ type BookProps = {
 };
 
 export default function BookList( props : BookProps) {
-  const [books, setBooks] = useState(props.books);
   return (
     <>
       <h1 className=""> List of books:</h1>
