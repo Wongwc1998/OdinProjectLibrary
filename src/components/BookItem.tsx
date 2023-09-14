@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import BookData from "@/types/Book";
 
 export default function BookItem({
@@ -29,7 +30,11 @@ export default function BookItem({
         <h1 className="font-bold"> {completed ? "Yes" : "No"}</h1>
       </CardContent>
       <CardFooter>
-        <h1 className="font-bold"> {props.completed ? "Yes" : "No"}</h1>
+        {" "}
+        <div className="flex flex-row gap-4 my-4">
+          <Button variant="outline">Edit Item</Button>
+          <Button variant="destructive">Delete Item</Button>
+        </div>
       </CardFooter>
     </Card>
   );
