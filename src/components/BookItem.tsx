@@ -8,17 +8,25 @@ import {
 } from "@/components/ui/card";
 import BookData from "@/types/Book";
 
-export default function BookItem(props: BookData) {
+export default function BookItem({
+  title,
+  author,
+  pagesRead,
+  completed,
+  id,
+}: BookData) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Title: {props.title}</CardTitle>
-        <CardDescription>Author: {props.author}</CardDescription>
+        <CardTitle>Title: {title}</CardTitle>
+        <CardDescription>Author: {author}</CardDescription>
       </CardHeader>
       <CardContent>
-        <h1>Pages Read: {props.pagesRead}</h1>
+        <h1>ID: {id}</h1>
+        <h1>Pages Read: {pagesRead}</h1>
         <br />
         <p>Book finished?</p>
+        <h1 className="font-bold"> {completed ? "Yes" : "No"}</h1>
       </CardContent>
       <CardFooter>
         <h1 className="font-bold"> {props.completed ? "Yes" : "No"}</h1>
