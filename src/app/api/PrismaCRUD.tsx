@@ -1,4 +1,3 @@
-"use server";
 
 import { prisma } from "../db";
 import BookData from "@/types/Book";
