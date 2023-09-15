@@ -1,7 +1,7 @@
 "use client";
 import { BookDialog } from "@/components/bookDialog";
 import BookList from "@/components/BookList";
-import { getBooks } from "@/components/testAPI";
+import { getBooks } from "@/app/api/APISelector";
 import BookData from "@/types/Book";
 import { useState, useEffect } from "react";
 
