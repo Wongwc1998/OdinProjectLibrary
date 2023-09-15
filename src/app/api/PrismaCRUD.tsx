@@ -5,7 +5,6 @@ import BookData from "@/types/Book";
 
 const addBookPrisma = async (data: BookData): Promise<void> => {
   await prisma.book.create({ data: data });
-  console.log(data);
 };
 
 const getBooksPrisma = async (): Promise<BookData[]> => {

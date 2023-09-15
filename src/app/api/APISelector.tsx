@@ -13,39 +13,57 @@ import {
 
 import BookData from "@/types/Book";
 
+const APIType = process.env.REACT_APP_API ?? "LocalStorage"; // Assuming LocalStorage as the default
+
+const CRUDActions = {
+  Prisma: {
+    add: addBookPrisma,
+    get: getBooksPrisma,
+    delete: deleteBookPrisma,
+    update: updateBookPrisma,
+  },
+  LocalStorage: {
+    add: addBookLocalStorage,
+    get: getBooksLocalStorage,
+    delete: deleteBookLocalStorage,
+    update: updateBookLocalStorage,
+  },
+};
+
 const addBook = async (data: BookData): Promise<void> => {
-  if (process.env.REACT_APP_API === "Prisma") {
-    await addBookPrisma(data);
-  } else if (process.env.REACT_APP_API === "LocalStorage") {
-    await addBookLocalStorage(data);
+  const action = CRUDActions[APIType as keyof typeof CRUDActions]?.add;
+  if (action) {
+    await action(data);
+  } else {
+    throw new Error("Invalid API type specified or add method not found.");
   }
 };
 
-const getBooks = async (): Promise<BookData[] | undefined> => {
-  try {
-    if (process.env.REACT_APP_API === "Prisma") {
-      return await getBooksPrisma();
-    } else if (process.env.REACT_APP_API === "LocalStorage") {
-      return await getBooksLocalStorage();
-    }
-  } catch {
-      console.log("Error getting books");
-      return [];
+const getBooks = async (): Promise<BookData[]> => {
+  const action = CRUDActions[APIType as keyof typeof CRUDActions]?.get;
+  if (action) {
+    return await action();
+  } else {
+    throw new Error("Invalid API type specified or get method not found.");
   }
 };
 
 const deleteBook = async (id: string): Promise<void> => {
-  if (process.env.REACT_APP_API === "Prisma") {
-    await deleteBookPrisma(id);
-  } else if (process.env.REACT_APP_API === "LocalStorage") {
-    await deleteBookLocalStorage(id);
+  const action = CRUDActions[APIType as keyof typeof CRUDActions]?.delete;
+  if (action) {
+    await action(id);
+  } else {
+    throw new Error("Invalid API type specified or delete method not found.");
   }
 };
 
 const updateBook = async (id: string, data: BookData): Promise<void> => {
-  if (process.env.REACT_APP_API === "Prisma") {
-    await updateBookPrisma(id, data);
-  } else if (process.env.REACT_APP_API === "LocalStorage") {
-    await updateBookLocalStorage(id, data);
+  const action = CRUDActions[APIType as keyof typeof CRUDActions]?.update;
+  if (action) {
+    await action(id, data);
+  } else {
+    throw new Error("Invalid API type specified or update method not found.");
   }
 };
+
+export { addBook, getBooks, deleteBook, updateBook };
