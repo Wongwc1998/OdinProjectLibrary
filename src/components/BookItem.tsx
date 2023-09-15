@@ -31,7 +31,7 @@ export default function BookItem({
       </CardContent>
       <CardFooter>
         {" "}
-        <div className="flex flex-row gap-4 my-4">
+        <div className="block lg:flex lg:flex-row lg:gap-4 my-4">
           <Button variant="outline">Edit Item</Button>
           <Button variant="destructive">Delete Item</Button>
         </div>
